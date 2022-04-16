@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="admissionSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="applicant_status">
+    <Key>
+      <PropertyRef Name="status_id" />
+    </Key>
+    <Property Name="status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="status_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_merit" Relationship="Self.FK__tbl_merit__m_app__44FF419A" FromRole="applicant_status" ToRole="tbl_merit" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_category">
+    <Key>
+      <PropertyRef Name="cat_id" />
+    </Key>
+    <Property Name="cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cat_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_student_reg" Relationship="Self.FK__tbl_stude__r_cat__32E0915F" FromRole="tbl_category" ToRole="tbl_student_reg" />
+  </EntityType>
+  <EntityType Name="tbl_depart">
+    <Key>
+      <PropertyRef Name="dep_id" />
+    </Key>
+    <Property Name="dep_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dep_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_merit" Relationship="Self.FK__tbl_merit__m_dep__440B1D61" FromRole="tbl_depart" ToRole="tbl_merit" />
+    <NavigationProperty Name="tbl_student_reg" Relationship="Self.FK__tbl_studen__r_p1__300424B4" FromRole="tbl_depart" ToRole="tbl_student_reg" />
+    <NavigationProperty Name="tbl_student_reg1" Relationship="Self.FK__tbl_studen__r_p2__30F848ED" FromRole="tbl_depart" ToRole="tbl_student_reg" />
+    <NavigationProperty Name="tbl_student_reg2" Relationship="Self.FK__tbl_studen__r_p3__31EC6D26" FromRole="tbl_depart" ToRole="tbl_student_reg" />
+  </EntityType>
+  <EntityType Name="tbl_merit">
+    <Key>
+      <PropertyRef Name="merit_id" />
+    </Key>
+    <Property Name="merit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="m_applicant_id" Type="Int32" />
+    <Property Name="m_dep_id" Type="Int32" />
+    <Property Name="m_app_status_id" Type="Int32" />
+    <NavigationProperty Name="applicant_status" Relationship="Self.FK__tbl_merit__m_app__44FF419A" FromRole="tbl_merit" ToRole="applicant_status" />
+    <NavigationProperty Name="tbl_depart" Relationship="Self.FK__tbl_merit__m_dep__440B1D61" FromRole="tbl_merit" ToRole="tbl_depart" />
+    <NavigationProperty Name="tbl_student_reg" Relationship="Self.FK__tbl_merit__m_app__4316F928" FromRole="tbl_merit" ToRole="tbl_student_reg" />
+  </EntityType>
+  <EntityType Name="tbl_student_reg">
+    <Key>
+      <PropertyRef Name="r_id" />
+    </Key>
+    <Property Name="r_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="r_cnic" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="r_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="r_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="r_father_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="r_mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="r_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="r_intermarks" Type="Int32" />
+    <Property Name="r_matric" Type="Int32" />
+    <Property Name="r_status" Type="Int32" />
+    <Property Name="r_date" Type="DateTime" Precision="0" />
+    <Property Name="r_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="r_p1" Type="Int32" />
+    <Property Name="r_p2" Type="Int32" />
+    <Property Name="r_p3" Type="Int32" />
+    <Property Name="r_cat" Type="Int32" />
+    <Property Name="r_hsc_marksheet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="r_ssc_marksheet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_category" Relationship="Self.FK__tbl_stude__r_cat__32E0915F" FromRole="tbl_student_reg" ToRole="tbl_category" />
+    <NavigationProperty Name="tbl_depart" Relationship="Self.FK__tbl_studen__r_p1__300424B4" FromRole="tbl_student_reg" ToRole="tbl_depart" />
+    <NavigationProperty Name="tbl_depart1" Relationship="Self.FK__tbl_studen__r_p2__30F848ED" FromRole="tbl_student_reg" ToRole="tbl_depart" />
+    <NavigationProperty Name="tbl_depart2" Relationship="Self.FK__tbl_studen__r_p3__31EC6D26" FromRole="tbl_student_reg" ToRole="tbl_depart" />
+    <NavigationProperty Name="tbl_merit" Relationship="Self.FK__tbl_merit__m_app__4316F928" FromRole="tbl_student_reg" ToRole="tbl_merit" />
+  </EntityType>
+  <Association Name="FK__tbl_merit__m_app__44FF419A">
+    <End Role="applicant_status" Type="Self.applicant_status" Multiplicity="0..1" />
+    <End Role="tbl_merit" Type="Self.tbl_merit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="applicant_status">
+        <PropertyRef Name="status_id" />
+      </Principal>
+      <Dependent Role="tbl_merit">
+        <PropertyRef Name="m_app_status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_stude__r_cat__32E0915F">
+    <End Role="tbl_category" Type="Self.tbl_category" Multiplicity="0..1" />
+    <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_category">
+        <PropertyRef Name="cat_id" />
+      </Principal>
+      <Dependent Role="tbl_student_reg">
+        <PropertyRef Name="r_cat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_merit__m_dep__440B1D61">
+    <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+    <End Role="tbl_merit" Type="Self.tbl_merit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_depart">
+        <PropertyRef Name="dep_id" />
+      </Principal>
+      <Dependent Role="tbl_merit">
+        <PropertyRef Name="m_dep_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_studen__r_p1__300424B4">
+    <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+    <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_depart">
+        <PropertyRef Name="dep_id" />
+      </Principal>
+      <Dependent Role="tbl_student_reg">
+        <PropertyRef Name="r_p1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_studen__r_p2__30F848ED">
+    <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+    <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_depart">
+        <PropertyRef Name="dep_id" />
+      </Principal>
+      <Dependent Role="tbl_student_reg">
+        <PropertyRef Name="r_p2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_studen__r_p3__31EC6D26">
+    <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+    <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_depart">
+        <PropertyRef Name="dep_id" />
+      </Principal>
+      <Dependent Role="tbl_student_reg">
+        <PropertyRef Name="r_p3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_merit__m_app__4316F928">
+    <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="0..1" />
+    <End Role="tbl_merit" Type="Self.tbl_merit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_student_reg">
+        <PropertyRef Name="r_id" />
+      </Principal>
+      <Dependent Role="tbl_merit">
+        <PropertyRef Name="m_applicant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="admissionSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="applicant_status" EntityType="Self.applicant_status" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tbl_category" EntityType="Self.tbl_category" />
+    <EntitySet Name="tbl_depart" EntityType="Self.tbl_depart" />
+    <EntitySet Name="tbl_merit" EntityType="Self.tbl_merit" />
+    <EntitySet Name="tbl_student_reg" EntityType="Self.tbl_student_reg" />
+    <AssociationSet Name="FK__tbl_merit__m_app__44FF419A" Association="Self.FK__tbl_merit__m_app__44FF419A">
+      <End Role="applicant_status" EntitySet="applicant_status" />
+      <End Role="tbl_merit" EntitySet="tbl_merit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_stude__r_cat__32E0915F" Association="Self.FK__tbl_stude__r_cat__32E0915F">
+      <End Role="tbl_category" EntitySet="tbl_category" />
+      <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_merit__m_dep__440B1D61" Association="Self.FK__tbl_merit__m_dep__440B1D61">
+      <End Role="tbl_depart" EntitySet="tbl_depart" />
+      <End Role="tbl_merit" EntitySet="tbl_merit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_studen__r_p1__300424B4" Association="Self.FK__tbl_studen__r_p1__300424B4">
+      <End Role="tbl_depart" EntitySet="tbl_depart" />
+      <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_studen__r_p2__30F848ED" Association="Self.FK__tbl_studen__r_p2__30F848ED">
+      <End Role="tbl_depart" EntitySet="tbl_depart" />
+      <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_studen__r_p3__31EC6D26" Association="Self.FK__tbl_studen__r_p3__31EC6D26">
+      <End Role="tbl_depart" EntitySet="tbl_depart" />
+      <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_merit__m_app__4316F928" Association="Self.FK__tbl_merit__m_app__4316F928">
+      <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+      <End Role="tbl_merit" EntitySet="tbl_merit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

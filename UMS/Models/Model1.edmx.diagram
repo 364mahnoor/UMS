@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e8b81ad5ca4f4825b6fc55c6ee773679" Name="Diagram1">
+        <EntityTypeShape EntityType="admissionSystemModel.applicant_status" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="admissionSystemModel.sysdiagram" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="admissionSystemModel.tbl_category" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="admissionSystemModel.tbl_depart" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="admissionSystemModel.tbl_merit" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="admissionSystemModel.tbl_student_reg" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="admissionSystemModel.FK__tbl_merit__m_app__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="admissionSystemModel.FK__tbl_stude__r_cat__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="admissionSystemModel.FK__tbl_merit__m_dep__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="admissionSystemModel.FK__tbl_studen__r_p1__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="admissionSystemModel.FK__tbl_studen__r_p2__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="admissionSystemModel.FK__tbl_studen__r_p3__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="admissionSystemModel.FK__tbl_merit__m_app__4316F928" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

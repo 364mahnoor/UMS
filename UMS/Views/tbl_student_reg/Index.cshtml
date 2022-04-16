@@ -1,0 +1,132 @@
+﻿@model IEnumerable<UMS.Models.tbl_student_reg>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.r_cnic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_fullname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_father_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_intermarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_matric)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_hsc_marksheet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_ssc_marksheet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_category.cat_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_depart.dep_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_depart1.dep_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_depart2.dep_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_cnic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_fullname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_father_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_intermarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_matric)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_date)
+        </td>
+        <td>
+          
+
+            <img src="@Url.Content(item.r_image)"  height="150"/>
+        </td>
+        <td>
+            <img src="@Url.Content(item.r_hsc_marksheet)" height="150" />
+        </td>
+        <td>
+          
+            <img src="@Url.Content(item.r_ssc_marksheet)" height="150" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_category.cat_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_depart.dep_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_depart1.dep_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_depart2.dep_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.r_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.r_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.r_id })
+        </td>
+    </tr>
+}
+
+</table>

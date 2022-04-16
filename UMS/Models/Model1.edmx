@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="admissionSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="applicant_status">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status_name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tbl_category">
+          <Key>
+            <PropertyRef Name="cat_id" />
+          </Key>
+          <Property Name="cat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cat_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_depart">
+          <Key>
+            <PropertyRef Name="dep_id" />
+          </Key>
+          <Property Name="dep_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dep_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_merit">
+          <Key>
+            <PropertyRef Name="merit_id" />
+          </Key>
+          <Property Name="merit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="m_applicant_id" Type="int" />
+          <Property Name="m_dep_id" Type="int" />
+          <Property Name="m_app_status_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_student_reg">
+          <Key>
+            <PropertyRef Name="r_id" />
+          </Key>
+          <Property Name="r_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="r_cnic" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="r_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="r_fullname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="r_father_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="r_mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="r_phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="r_intermarks" Type="int" />
+          <Property Name="r_matric" Type="int" />
+          <Property Name="r_status" Type="int" />
+          <Property Name="r_date" Type="date" />
+          <Property Name="r_image" Type="nvarchar(max)" />
+          <Property Name="r_p1" Type="int" />
+          <Property Name="r_p2" Type="int" />
+          <Property Name="r_p3" Type="int" />
+          <Property Name="r_cat" Type="int" />
+          <Property Name="r_hsc_marksheet" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="r_ssc_marksheet" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tbl_merit__m_app__4316F928">
+          <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="0..1" />
+          <End Role="tbl_merit" Type="Self.tbl_merit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_student_reg">
+              <PropertyRef Name="r_id" />
+            </Principal>
+            <Dependent Role="tbl_merit">
+              <PropertyRef Name="m_applicant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_merit__m_app__44FF419A">
+          <End Role="applicant_status" Type="Self.applicant_status" Multiplicity="0..1" />
+          <End Role="tbl_merit" Type="Self.tbl_merit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="applicant_status">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="tbl_merit">
+              <PropertyRef Name="m_app_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_merit__m_dep__440B1D61">
+          <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+          <End Role="tbl_merit" Type="Self.tbl_merit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_depart">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="tbl_merit">
+              <PropertyRef Name="m_dep_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_stude__r_cat__32E0915F">
+          <End Role="tbl_category" Type="Self.tbl_category" Multiplicity="0..1" />
+          <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_category">
+              <PropertyRef Name="cat_id" />
+            </Principal>
+            <Dependent Role="tbl_student_reg">
+              <PropertyRef Name="r_cat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_studen__r_p1__300424B4">
+          <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+          <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_depart">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="tbl_student_reg">
+              <PropertyRef Name="r_p1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_studen__r_p2__30F848ED">
+          <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+          <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_depart">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="tbl_student_reg">
+              <PropertyRef Name="r_p2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_studen__r_p3__31EC6D26">
+          <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+          <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_depart">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="tbl_student_reg">
+              <PropertyRef Name="r_p3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="admissionSystemModelStoreContainer">
+          <EntitySet Name="applicant_status" EntityType="Self.applicant_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_category" EntityType="Self.tbl_category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_depart" EntityType="Self.tbl_depart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_merit" EntityType="Self.tbl_merit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_student_reg" EntityType="Self.tbl_student_reg" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_merit__m_app__4316F928" Association="Self.FK__tbl_merit__m_app__4316F928">
+            <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+            <End Role="tbl_merit" EntitySet="tbl_merit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_merit__m_app__44FF419A" Association="Self.FK__tbl_merit__m_app__44FF419A">
+            <End Role="applicant_status" EntitySet="applicant_status" />
+            <End Role="tbl_merit" EntitySet="tbl_merit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_merit__m_dep__440B1D61" Association="Self.FK__tbl_merit__m_dep__440B1D61">
+            <End Role="tbl_depart" EntitySet="tbl_depart" />
+            <End Role="tbl_merit" EntitySet="tbl_merit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_stude__r_cat__32E0915F" Association="Self.FK__tbl_stude__r_cat__32E0915F">
+            <End Role="tbl_category" EntitySet="tbl_category" />
+            <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_studen__r_p1__300424B4" Association="Self.FK__tbl_studen__r_p1__300424B4">
+            <End Role="tbl_depart" EntitySet="tbl_depart" />
+            <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_studen__r_p2__30F848ED" Association="Self.FK__tbl_studen__r_p2__30F848ED">
+            <End Role="tbl_depart" EntitySet="tbl_depart" />
+            <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_studen__r_p3__31EC6D26" Association="Self.FK__tbl_studen__r_p3__31EC6D26">
+            <End Role="tbl_depart" EntitySet="tbl_depart" />
+            <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="admissionSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="applicant_status">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_merit" Relationship="Self.FK__tbl_merit__m_app__44FF419A" FromRole="applicant_status" ToRole="tbl_merit" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_category">
+          <Key>
+            <PropertyRef Name="cat_id" />
+          </Key>
+          <Property Name="cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cat_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_student_reg" Relationship="Self.FK__tbl_stude__r_cat__32E0915F" FromRole="tbl_category" ToRole="tbl_student_reg" />
+        </EntityType>
+        <EntityType Name="tbl_depart">
+          <Key>
+            <PropertyRef Name="dep_id" />
+          </Key>
+          <Property Name="dep_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dep_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_merit" Relationship="Self.FK__tbl_merit__m_dep__440B1D61" FromRole="tbl_depart" ToRole="tbl_merit" />
+          <NavigationProperty Name="tbl_student_reg" Relationship="Self.FK__tbl_studen__r_p1__300424B4" FromRole="tbl_depart" ToRole="tbl_student_reg" />
+          <NavigationProperty Name="tbl_student_reg1" Relationship="Self.FK__tbl_studen__r_p2__30F848ED" FromRole="tbl_depart" ToRole="tbl_student_reg" />
+          <NavigationProperty Name="tbl_student_reg2" Relationship="Self.FK__tbl_studen__r_p3__31EC6D26" FromRole="tbl_depart" ToRole="tbl_student_reg" />
+        </EntityType>
+        <EntityType Name="tbl_merit">
+          <Key>
+            <PropertyRef Name="merit_id" />
+          </Key>
+          <Property Name="merit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="m_applicant_id" Type="Int32" />
+          <Property Name="m_dep_id" Type="Int32" />
+          <Property Name="m_app_status_id" Type="Int32" />
+          <NavigationProperty Name="applicant_status" Relationship="Self.FK__tbl_merit__m_app__44FF419A" FromRole="tbl_merit" ToRole="applicant_status" />
+          <NavigationProperty Name="tbl_depart" Relationship="Self.FK__tbl_merit__m_dep__440B1D61" FromRole="tbl_merit" ToRole="tbl_depart" />
+          <NavigationProperty Name="tbl_student_reg" Relationship="Self.FK__tbl_merit__m_app__4316F928" FromRole="tbl_merit" ToRole="tbl_student_reg" />
+        </EntityType>
+        <EntityType Name="tbl_student_reg">
+          <Key>
+            <PropertyRef Name="r_id" />
+          </Key>
+          <Property Name="r_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="r_cnic" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="r_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="r_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="r_father_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="r_mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="r_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="r_intermarks" Type="Int32" />
+          <Property Name="r_matric" Type="Int32" />
+          <Property Name="r_status" Type="Int32" />
+          <Property Name="r_date" Type="DateTime" Precision="0" />
+          <Property Name="r_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="r_p1" Type="Int32" />
+          <Property Name="r_p2" Type="Int32" />
+          <Property Name="r_p3" Type="Int32" />
+          <Property Name="r_cat" Type="Int32" />
+          <Property Name="r_hsc_marksheet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="r_ssc_marksheet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_category" Relationship="Self.FK__tbl_stude__r_cat__32E0915F" FromRole="tbl_student_reg" ToRole="tbl_category" />
+          <NavigationProperty Name="tbl_depart" Relationship="Self.FK__tbl_studen__r_p1__300424B4" FromRole="tbl_student_reg" ToRole="tbl_depart" />
+          <NavigationProperty Name="tbl_depart1" Relationship="Self.FK__tbl_studen__r_p2__30F848ED" FromRole="tbl_student_reg" ToRole="tbl_depart" />
+          <NavigationProperty Name="tbl_depart2" Relationship="Self.FK__tbl_studen__r_p3__31EC6D26" FromRole="tbl_student_reg" ToRole="tbl_depart" />
+          <NavigationProperty Name="tbl_merit" Relationship="Self.FK__tbl_merit__m_app__4316F928" FromRole="tbl_student_reg" ToRole="tbl_merit" />
+        </EntityType>
+        <Association Name="FK__tbl_merit__m_app__44FF419A">
+          <End Role="applicant_status" Type="Self.applicant_status" Multiplicity="0..1" />
+          <End Role="tbl_merit" Type="Self.tbl_merit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="applicant_status">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="tbl_merit">
+              <PropertyRef Name="m_app_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_stude__r_cat__32E0915F">
+          <End Role="tbl_category" Type="Self.tbl_category" Multiplicity="0..1" />
+          <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_category">
+              <PropertyRef Name="cat_id" />
+            </Principal>
+            <Dependent Role="tbl_student_reg">
+              <PropertyRef Name="r_cat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_merit__m_dep__440B1D61">
+          <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+          <End Role="tbl_merit" Type="Self.tbl_merit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_depart">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="tbl_merit">
+              <PropertyRef Name="m_dep_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_studen__r_p1__300424B4">
+          <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+          <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_depart">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="tbl_student_reg">
+              <PropertyRef Name="r_p1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_studen__r_p2__30F848ED">
+          <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+          <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_depart">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="tbl_student_reg">
+              <PropertyRef Name="r_p2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_studen__r_p3__31EC6D26">
+          <End Role="tbl_depart" Type="Self.tbl_depart" Multiplicity="0..1" />
+          <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_depart">
+              <PropertyRef Name="dep_id" />
+            </Principal>
+            <Dependent Role="tbl_student_reg">
+              <PropertyRef Name="r_p3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_merit__m_app__4316F928">
+          <End Role="tbl_student_reg" Type="Self.tbl_student_reg" Multiplicity="0..1" />
+          <End Role="tbl_merit" Type="Self.tbl_merit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_student_reg">
+              <PropertyRef Name="r_id" />
+            </Principal>
+            <Dependent Role="tbl_merit">
+              <PropertyRef Name="m_applicant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="admissionSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="applicant_status" EntityType="Self.applicant_status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tbl_category" EntityType="Self.tbl_category" />
+          <EntitySet Name="tbl_depart" EntityType="Self.tbl_depart" />
+          <EntitySet Name="tbl_merit" EntityType="Self.tbl_merit" />
+          <EntitySet Name="tbl_student_reg" EntityType="Self.tbl_student_reg" />
+          <AssociationSet Name="FK__tbl_merit__m_app__44FF419A" Association="Self.FK__tbl_merit__m_app__44FF419A">
+            <End Role="applicant_status" EntitySet="applicant_status" />
+            <End Role="tbl_merit" EntitySet="tbl_merit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_stude__r_cat__32E0915F" Association="Self.FK__tbl_stude__r_cat__32E0915F">
+            <End Role="tbl_category" EntitySet="tbl_category" />
+            <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_merit__m_dep__440B1D61" Association="Self.FK__tbl_merit__m_dep__440B1D61">
+            <End Role="tbl_depart" EntitySet="tbl_depart" />
+            <End Role="tbl_merit" EntitySet="tbl_merit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_studen__r_p1__300424B4" Association="Self.FK__tbl_studen__r_p1__300424B4">
+            <End Role="tbl_depart" EntitySet="tbl_depart" />
+            <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_studen__r_p2__30F848ED" Association="Self.FK__tbl_studen__r_p2__30F848ED">
+            <End Role="tbl_depart" EntitySet="tbl_depart" />
+            <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_studen__r_p3__31EC6D26" Association="Self.FK__tbl_studen__r_p3__31EC6D26">
+            <End Role="tbl_depart" EntitySet="tbl_depart" />
+            <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_merit__m_app__4316F928" Association="Self.FK__tbl_merit__m_app__4316F928">
+            <End Role="tbl_student_reg" EntitySet="tbl_student_reg" />
+            <End Role="tbl_merit" EntitySet="tbl_merit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="admissionSystemModelStoreContainer" CdmEntityContainer="admissionSystemEntities">
+          <EntitySetMapping Name="applicant_status">
+            <EntityTypeMapping TypeName="admissionSystemModel.applicant_status">
+              <MappingFragment StoreEntitySet="applicant_status">
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="status_name" ColumnName="status_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="admissionSystemModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_category">
+            <EntityTypeMapping TypeName="admissionSystemModel.tbl_category">
+              <MappingFragment StoreEntitySet="tbl_category">
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_depart">
+            <EntityTypeMapping TypeName="admissionSystemModel.tbl_depart">
+              <MappingFragment StoreEntitySet="tbl_depart">
+                <ScalarProperty Name="dep_id" ColumnName="dep_id" />
+                <ScalarProperty Name="dep_name" ColumnName="dep_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_merit">
+            <EntityTypeMapping TypeName="admissionSystemModel.tbl_merit">
+              <MappingFragment StoreEntitySet="tbl_merit">
+                <ScalarProperty Name="merit_id" ColumnName="merit_id" />
+                <ScalarProperty Name="m_applicant_id" ColumnName="m_applicant_id" />
+                <ScalarProperty Name="m_dep_id" ColumnName="m_dep_id" />
+                <ScalarProperty Name="m_app_status_id" ColumnName="m_app_status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_student_reg">
+            <EntityTypeMapping TypeName="admissionSystemModel.tbl_student_reg">
+              <MappingFragment StoreEntitySet="tbl_student_reg">
+                <ScalarProperty Name="r_id" ColumnName="r_id" />
+                <ScalarProperty Name="r_cnic" ColumnName="r_cnic" />
+                <ScalarProperty Name="r_password" ColumnName="r_password" />
+                <ScalarProperty Name="r_fullname" ColumnName="r_fullname" />
+                <ScalarProperty Name="r_father_name" ColumnName="r_father_name" />
+                <ScalarProperty Name="r_mobile" ColumnName="r_mobile" />
+                <ScalarProperty Name="r_phone" ColumnName="r_phone" />
+                <ScalarProperty Name="r_intermarks" ColumnName="r_intermarks" />
+                <ScalarProperty Name="r_matric" ColumnName="r_matric" />
+                <ScalarProperty Name="r_status" ColumnName="r_status" />
+                <ScalarProperty Name="r_date" ColumnName="r_date" />
+                <ScalarProperty Name="r_image" ColumnName="r_image" />
+                <ScalarProperty Name="r_p1" ColumnName="r_p1" />
+                <ScalarProperty Name="r_p2" ColumnName="r_p2" />
+                <ScalarProperty Name="r_p3" ColumnName="r_p3" />
+                <ScalarProperty Name="r_cat" ColumnName="r_cat" />
+                <ScalarProperty Name="r_hsc_marksheet" ColumnName="r_hsc_marksheet" />
+                <ScalarProperty Name="r_ssc_marksheet" ColumnName="r_ssc_marksheet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

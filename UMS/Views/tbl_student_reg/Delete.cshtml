@@ -1,0 +1,160 @@
+﻿@model UMS.Models.tbl_student_reg
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_student_reg</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.r_cnic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_cnic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_father_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_father_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_intermarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_intermarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_matric)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_matric)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_hsc_marksheet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_hsc_marksheet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_ssc_marksheet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_ssc_marksheet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_category.cat_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_category.cat_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_depart.dep_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_depart.dep_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_depart1.dep_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_depart1.dep_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_depart2.dep_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_depart2.dep_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

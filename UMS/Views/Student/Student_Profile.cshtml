@@ -1,0 +1,66 @@
+﻿@model IEnumerable<UMS.Models.tbl_student_reg>
+@{
+    ViewBag.Title = "Student_Profile";
+}
+
+<h2>Student_Profile</h2>
+
+<table class="table table-bordered">
+   
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>CNIC</th>
+            <th>PASSWORD</th>
+            <th>FULL NAME</th>
+            <th>FATHER NAME </th>
+            <th>MOBILE</th>
+            <th>CONTACT</th>
+            <th>MATRIC MARKS</th>
+            <th>INTERMEDIATE MARKS</th>
+            <th>STATUS</th>
+            <th>DATE</th>
+            <th>USER IMAGE</th>
+            <th>P1 </th>
+            <th>P2</th>
+            <th>P3</th>
+            <th>CATEGORY</th>
+            <th>SSC MARKSHEET</th>
+            <th>HSC MARKSHEET</th>
+
+        </tr>
+
+    </thead>
+    <tbody>
+        @if (Model!=null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.r_id</td>
+                    <td>@item.r_cnic</td>
+                    <td>@item.r_password</td>
+                    <td>@item.r_fullname</td>
+                    <td>@item.r_father_name</td>
+                    <td>@item.r_mobile</td>
+                    <td>@item.r_phone</td>
+                    <td>@item.r_matric</td>
+                    <td>@item.r_intermarks</td>
+
+                    <td>@item.r_status</td>
+                    <td>@item.r_date</td>
+
+                    <td> <img src="@Url.Content(item.r_image)" height="250px" /></td>
+
+                 
+
+                    <td>@item.r_cat</td>
+                    <td> <img src="@Url.Content(item.r_ssc_marksheet)" height="250px" /></td>
+                    <td> <img src="@Url.Content(item.r_hsc_marksheet)" height="250px" /></td>
+                </tr>
+            }
+
+        }
+    </tbody>
+
+</table>

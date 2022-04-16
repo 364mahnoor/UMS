@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="admissionSystemModelStoreContainer" CdmEntityContainer="admissionSystemEntities">
+    <EntitySetMapping Name="applicant_status">
+      <EntityTypeMapping TypeName="admissionSystemModel.applicant_status">
+        <MappingFragment StoreEntitySet="applicant_status">
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="admissionSystemModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_category">
+      <EntityTypeMapping TypeName="admissionSystemModel.tbl_category">
+        <MappingFragment StoreEntitySet="tbl_category">
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_depart">
+      <EntityTypeMapping TypeName="admissionSystemModel.tbl_depart">
+        <MappingFragment StoreEntitySet="tbl_depart">
+          <ScalarProperty Name="dep_id" ColumnName="dep_id" />
+          <ScalarProperty Name="dep_name" ColumnName="dep_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_merit">
+      <EntityTypeMapping TypeName="admissionSystemModel.tbl_merit">
+        <MappingFragment StoreEntitySet="tbl_merit">
+          <ScalarProperty Name="merit_id" ColumnName="merit_id" />
+          <ScalarProperty Name="m_applicant_id" ColumnName="m_applicant_id" />
+          <ScalarProperty Name="m_dep_id" ColumnName="m_dep_id" />
+          <ScalarProperty Name="m_app_status_id" ColumnName="m_app_status_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_student_reg">
+      <EntityTypeMapping TypeName="admissionSystemModel.tbl_student_reg">
+        <MappingFragment StoreEntitySet="tbl_student_reg">
+          <ScalarProperty Name="r_id" ColumnName="r_id" />
+          <ScalarProperty Name="r_cnic" ColumnName="r_cnic" />
+          <ScalarProperty Name="r_password" ColumnName="r_password" />
+          <ScalarProperty Name="r_fullname" ColumnName="r_fullname" />
+          <ScalarProperty Name="r_father_name" ColumnName="r_father_name" />
+          <ScalarProperty Name="r_mobile" ColumnName="r_mobile" />
+          <ScalarProperty Name="r_phone" ColumnName="r_phone" />
+          <ScalarProperty Name="r_intermarks" ColumnName="r_intermarks" />
+          <ScalarProperty Name="r_matric" ColumnName="r_matric" />
+          <ScalarProperty Name="r_status" ColumnName="r_status" />
+          <ScalarProperty Name="r_date" ColumnName="r_date" />
+          <ScalarProperty Name="r_image" ColumnName="r_image" />
+          <ScalarProperty Name="r_p1" ColumnName="r_p1" />
+          <ScalarProperty Name="r_p2" ColumnName="r_p2" />
+          <ScalarProperty Name="r_p3" ColumnName="r_p3" />
+          <ScalarProperty Name="r_cat" ColumnName="r_cat" />
+          <ScalarProperty Name="r_hsc_marksheet" ColumnName="r_hsc_marksheet" />
+          <ScalarProperty Name="r_ssc_marksheet" ColumnName="r_ssc_marksheet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,155 @@
+﻿@model UMS.Models.tbl_student_reg
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Index", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>tbl_student_reg</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.r_cnic, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.r_cnic, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.r_cnic, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.r_password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.r_password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.r_password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.r_fullname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.r_fullname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.r_fullname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.r_father_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.r_father_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.r_father_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.r_mobile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.r_mobile, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.r_mobile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.r_phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.r_phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.r_phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.r_intermarks, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.r_intermarks, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.r_intermarks, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.r_matric, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.r_matric, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.r_matric, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="field-group">
+
+            <div class="col-md-10">
+                <input type="file" id="imgfile" name="imgfile" class="form-control" required="required" />
+                </div>
+            </div>
+        <div class="field-group">
+
+            <div class="col-md-10">
+
+                <input type="file" id="SSCfile" name="SSCfile" class="form-control" required="required" />
+            </div>
+        </div>
+
+        <div class="field-group">
+
+            <div class="col-md-10">
+
+                <input type="file" id="HSCfile" name="HSCfile" class="form-control" required="required" />
+            </div>
+        </div>
+
+    
+
+        <div class="field-group">
+            <span class="fa fa-user" aria-hidden="true"></span>
+            <div class="wthree-field">
+
+                @Html.DropDownListFor(x => x.r_p1, ViewBag.dep_list as SelectList, "== Select==", new { @class = "form-control" })
+           
+            </div>
+        </div>
+
+
+
+        <div class="field-group">
+            <span class="fa fa-user" aria-hidden="true"></span>
+            <div class="wthree-field">
+
+                @Html.DropDownListFor(x => x.r_p2, ViewBag.dep_list as SelectList, "== Select==", new { @class = "form-control" })
+                
+            </div>
+        </div>
+
+
+        <div class="field-group">
+            <span class="fa fa-user" aria-hidden="true"></span>
+            <div class="wthree-field">
+
+                @Html.DropDownListFor(x => x.r_p3, ViewBag.dep_list as SelectList, "== Select==", new { @class = "form-control" })
+                
+            </div>
+        </div>
+
+        <div class="field-group">
+            <span class="fa fa-user" aria-hidden="true"></span>
+            <div class="wthree-field">
+
+                @Html.DropDownListFor(x => x.r_cat, ViewBag.cat_list as SelectList, "== Select==", new { @class = "form-control" })
+             
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
